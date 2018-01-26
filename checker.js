@@ -1,5 +1,4 @@
 
-const fetch = require('node-fetch');
 var request = require('request');
 
 function check(url, invocationParameters,  expectedResultData, expectedResultStatus) {

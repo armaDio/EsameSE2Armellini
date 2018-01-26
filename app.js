@@ -15,7 +15,7 @@ app.get('/count',function (req, res) {
 
 app.post('/check',function (req, res) {
     var parameters = req.body;
-    return checker(parameters.url, parameters.invocationParameters, parameters.expectedResultData, parameters.expectedResultStatus);
+    res.json(checker(parameters.url, parameters.invocationParameters, parameters.expectedResultData, parameters.expectedResultStatus));
 })
 
 app.listen(app.get('port'), function() {

@@ -15,8 +15,8 @@ function check(url, invocationParameters,  expectedResultData, expectedResultSta
           request.get({"url": url, "qs": invocationParameters}, function(err, res, body) {
     			   checkResult.resultStatus = res.statusCode;
              checkResult.statusTestPassed = (res.statusCode == expectedResultStatus);
-             checkResult.resultData = res.body;
-             checkResult.resultDataAsExpected = compareResults(expectedResultData, res.body);
+             checkResult.resultData = JSON.parse(res.body);
+             checkResult.resultDataAsExpected = compareResults(expectedResultData, JSON.parse(res.body));
              resolve(checkResult);
 		      });
     });

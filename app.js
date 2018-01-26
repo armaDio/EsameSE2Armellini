@@ -15,7 +15,12 @@ app.get('/count',function (req, res) {
 
 app.post('/check',function (req, res) {
     var parameters = req.body;
-    res.json(checker(parameters.url, parameters.invocationParameters, parameters.expectedResultData, parameters.expectedResultStatus));
+    new Promise(function(resolve,reject){
+
+      resolve(checker(parameters.url, parameters.invocationParameters, parameters.expectedResultData, parameters.expectedResultStatus));
+    }).then((resolve,err) => {
+      res.send(resolve);});
+
 })
 
 app.listen(app.get('port'), function() {

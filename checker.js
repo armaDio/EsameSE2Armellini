@@ -10,14 +10,16 @@ function check(url, invocationParameters,  expectedResultData, expectedResultSta
         statusTestPassed: null,
         resultDataAsExpected: null
     }
-    return request.get({"url": url, "qs": invocationParameters}, function(err, res, body) {
-			   checkResult.resultStatus = res.statusCode;
-         checkResult.statusTestPassed = (res.statusCode == expectedResultStatus);
-         checkResult.resultData = res.body;
-         checkResult.resultDataAsExpected = compareResults(expectedResultData, res.body);
-         return checkResult;
-		});
-
+    value = {};
+    return new Promise(function(resolve,reject){
+          request.get({"url": url, "qs": invocationParameters}, function(err, res, body) {
+    			   checkResult.resultStatus = res.statusCode;
+             checkResult.statusTestPassed = (res.statusCode == expectedResultStatus);
+             checkResult.resultData = res.body;
+             checkResult.resultDataAsExpected = compareResults(expectedResultData, res.body);
+             resolve(checkResult);
+		      });
+    });
 }
 
 
